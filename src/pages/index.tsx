@@ -25,10 +25,14 @@ const SocialLink = ({ name, href, icon, copyEmail }: Account) => {
       rel="noopener noreferrer"
       target="_blank"
     >
-      <FontAwesomeIcon size="1x" icon={icon ? icon : ['fab', name.toLowerCase() as IconName]} />
+      <FontAwesomeIcon
+        size="1x"
+        icon={icon ? icon : ['fab', name.toLowerCase() as IconName]}
+      />
     </a>
   );
 };
+
 
 const Home = () => {
   const { theme } = useTheme();
