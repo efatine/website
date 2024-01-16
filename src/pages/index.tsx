@@ -25,14 +25,10 @@ const SocialLink = ({ name, href, icon, copyEmail }: Account) => {
       rel="noopener noreferrer"
       target="_blank"
     >
-      <FontAwesomeIcon
-        size="1x"
-        icon={icon ? icon : ['fab', name.toLowerCase() as IconName]}
-      />
+      <FontAwesomeIcon size="1x" icon={icon ? icon : ['fab', name.toLowerCase() as IconName]} />
     </a>
   );
 };
-
 
 const Home = () => {
   const { theme } = useTheme();
@@ -74,9 +70,9 @@ const Home = () => {
         </div>
 
         <div className="grid grid-flow-row sm:grid-flow-col w-full sm:w-48 mt-3 text-lg">
-          {AccountData.map((account) => (
+        {AccountData && AccountData.length > 0 && AccountData.map((account) => (
             <SocialLink
-              key={uuidv4()}
+              key={account.name} // Using 'name' as a stable key
               name={account.name}
               href={account.href}
               icon={account.icon}
