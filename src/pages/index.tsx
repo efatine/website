@@ -85,10 +85,6 @@ const Home = () => {
           <Time />
           <Weather />
         </div>
-
-        <div>
-          <NowPlayingCard />
-        </div>
       </MainLayout>
     </>
   );
