@@ -70,9 +70,9 @@ const Home = () => {
         </div>
 
         <div className="grid grid-flow-row sm:grid-flow-col w-full sm:w-48 mt-3 text-lg">
-        {AccountData && AccountData.length > 0 && AccountData.map((account) => (
+          {AccountData.map((account) => (
             <SocialLink
-              key={account.name} // Using 'name' as a stable key
+              key={uuidv4()}
               name={account.name}
               href={account.href}
               icon={account.icon}
@@ -82,9 +82,7 @@ const Home = () => {
         </div>
 
         <div className="grid my-8 gap-2 text-center sm:text-left">
-          <Time />
-          <Weather />
-        </div>
+        </div>x
       </MainLayout>
     </>
   );
