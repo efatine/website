@@ -21,11 +21,11 @@ export const RouteData: Route[] = [
     name: 'blog',
     href: '/blog',
   },
-  {
+ /* {
     name: 'anime',
     href: '/anime',
     type: 'dropdown',
-  },
+  },*/
   {
     name: 'setup',
     href: '/setup',
