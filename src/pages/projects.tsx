@@ -2,6 +2,7 @@ import { MainLayout } from 'layouts/MainLayout'
 import { v4 as uuidv4 } from 'uuid'
 import { ProjectData } from 'data/projects'
 import { ProjectCard } from 'components/ProjectCard'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 
 const Projects = () => {
   return (
@@ -18,7 +19,8 @@ const Projects = () => {
             icon={project.icon}
             href={project.href}
           />
-        ))}
+        ))} 
+        <SpeedInsights />
       </div>
     </MainLayout>
   )

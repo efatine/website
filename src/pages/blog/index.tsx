@@ -3,6 +3,7 @@ import { v4 as uuidv4 } from 'uuid'
 import { getSortedPosts } from 'lib/posts'
 import { BlogCard } from 'components/BlogCard'
 import { InferGetStaticPropsType } from 'next'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 
 const Blog = ({ allPostsData }: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (
@@ -14,6 +15,7 @@ const Blog = ({ allPostsData }: InferGetStaticPropsType<typeof getStaticProps>) 
         {allPostsData.map(({ slug, date, title, excerpt }) => {
           return <BlogCard key={uuidv4()} slug={slug} date={date} title={title} excerpt={excerpt} />
         })}
+        <SpeedInsights />
       </div>
     </MainLayout>
   )
