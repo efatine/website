@@ -64,7 +64,7 @@ const Home = () => {
           <div>
             <h1 className="text-6xl font-bold">Elias Fatine</h1>
             <p className="text-lg text-gray-600 dark:text-gray-400 mt-2">
-              22-year-old <span className="font-semibold">Computer Science Student @ uOttawa</span> from Ottawa, Ontario.
+              22-year-old <span className="font-semibold">Computer Science Student @ uOttawa</span> from Canada.
             </p>
           </div>
         </div>

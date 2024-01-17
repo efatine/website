@@ -14,6 +14,11 @@ export const RouteData: Route[] = [
     icon: ['fas', 'globe-americas'],
   },
   {
+    name: 'about',
+    href: '/about',
+
+  },
+  {
     name: 'projects',
     href: '/projects',
   },
