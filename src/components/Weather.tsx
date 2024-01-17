@@ -28,7 +28,7 @@ export const Weather = () => {
             Rain: ['fas', 'cloud-showers-heavy'],
             Drizzle: ['fas', 'cloud-rain'],
             Mist: ['fas', 'cloud-rain'],
-            Clouds: ['fas', 'clouds'],
+            Clouds: ['fas', 'cloud-sun'],
             Clear: ['fas', 'cloud-sun'],
             Haze: ['fas', 'sun-haze'],
           }[weatherName] as IconProp) || ['fas', 'cloud']

@@ -12,7 +12,7 @@ import dynamic from 'next/dynamic';
 import toast from 'react-hot-toast';
 import { v4 as uuidv4 } from 'uuid';
 const Time = dynamic(() => import('components/Time'), {
-  ssr: false,
+  ssr: true,
 });
 
 const SocialLink = ({ name, href, icon, copyEmail }: Account) => {
@@ -82,7 +82,9 @@ const Home = () => {
         </div>
 
         <div className="grid my-8 gap-2 text-center sm:text-left">
-        </div>x
+          <Time />
+          <Weather />
+        </div>
       </MainLayout>
     </>
   );

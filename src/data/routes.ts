@@ -34,6 +34,6 @@ export const RouteData: Route[] = [
   {
     name: 'albums',
     href: '/albums',
-    type: 'dropdown',
+   type: 'dropdown',
   },
 ]

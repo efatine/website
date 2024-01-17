@@ -7,7 +7,7 @@ export const ComponentText = ({ type, href, name }: Component) => {
   return (
     <li>
       <span>{type}</span>
-      <FontAwesomeIcon className="mx-2" icon={['far', 'caret-right']} />
+      <FontAwesomeIcon className="mx-2" icon={['fas', 'caret-right']} />
       <a rel="noopener noreferrer" target="_blank" href={href}>
         {name}
       </a>
