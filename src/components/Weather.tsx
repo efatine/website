@@ -10,7 +10,7 @@ export const Weather = () => {
 
   const { data }: { data?: WeatherResponse } = useSWR('weather')
 
-  if (!data) return null
+  if (!data || !data.weather || data.weather.length === 0) return null
 
   const { main: weatherName, description: weatherDescription } = data.weather[0]
   const { temp: celsius } = data.main
