@@ -16,7 +16,7 @@ export const Weather = () => {
   const { temp: celsius } = data.main
 
   const fahrenheit = (celsius * 9) / 5 + 32
-  const toggleTemperature = () => setCelsius((celsius) => !celsius)
+  const toggleTemperature = () => setCelsius((prevCelsius) => !prevCelsius)
 
   return (
     <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
@@ -31,6 +31,7 @@ export const Weather = () => {
             Clouds: ['fas', 'cloud-sun'],
             Clear: ['fas', 'cloud-sun'],
             Haze: ['fas', 'sun-haze'],
+            Fog: ['fas', 'smog']
           }[weatherName] as IconProp) || ['fas', 'cloud']
         }
         className="mr-2"
