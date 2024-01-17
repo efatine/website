@@ -2,7 +2,6 @@ import { MainLayout } from 'layouts/MainLayout'
 import { v4 as uuidv4 } from 'uuid'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { ComponentData, Component } from 'data/setup'
-import { SpeedInsights } from '@vercel/speed-insights/next'
 
 export const ComponentText = ({ type, href, name }: Component) => {
   return (
@@ -32,7 +31,6 @@ const Setup = () => {
               />
             ))}
           </ul>
-          <SpeedInsights />
         </div>
         <div>
           <h3>Laptop</h3>
