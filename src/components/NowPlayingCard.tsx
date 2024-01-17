@@ -4,9 +4,10 @@ import { truncate } from 'lib/utils'
 import Image from 'next/image'
 import FadeIn from 'react-fade-in'
 import { useLastFM } from 'use-last-fm'
-const { LASTFM_API_KEY } = process.env
+const  LASTFM_API_KEY  = "b9214ac8b554733e66f584d24f0dcd89"; //process.env
 
 export const NowPlayingCard = () => {
+  console.log("API KEY: ", LASTFM_API_KEY)
   const lastFM = useLastFM('nionide', LASTFM_API_KEY!, 5000, 'large')
 
   if (['connecting', 'error'].includes(lastFM.status)) return null
