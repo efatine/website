@@ -8,7 +8,7 @@ import readingTime from 'reading-time'
 import rehypePrism from '@mapbox/rehype-prism'
 import matter from 'gray-matter'
 import Image from 'next/image'
-import EliasImage from '@public/img/elias.jpeg'
+import EliasImage from '@public/img/elias.jpg'
 import { GetStaticProps, InferGetStaticPropsType } from 'next'
 import { ParsedUrlQuery } from 'querystring'
 

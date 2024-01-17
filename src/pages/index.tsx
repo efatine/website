@@ -7,7 +7,7 @@ import { Weather } from 'components/Weather';
 import { Account, AccountData } from 'data/accounts';
 import { MainLayout } from 'layouts/MainLayout';
 import { useTheme } from 'next-themes';
-import EliasImage from '@public/img/elias.jpeg'
+import EliasImage from '@public/img/elias.jpg'
 import dynamic from 'next/dynamic';
 import toast from 'react-hot-toast';
 import { v4 as uuidv4 } from 'uuid';
@@ -54,7 +54,7 @@ const Home = () => {
 
       <MainLayout margin={false}>
         <div className="flex items-center flex-col sm:flex-row text-center sm:text-left">
-          <div className="rounded-full w-16 h-16 mb-4 sm:mr-4 overflow-hidden">
+          <div className="rounded-full w-32 h-32 mb-4 sm:mr-4 overflow-hidden">
             <Image
               src={EliasImage}
               alt="Elias Fatine's Image"
@@ -81,7 +81,7 @@ const Home = () => {
           ))}
         </div>
 
-        <div className="grid my-8 gap-2 text-center sm:text-left">
+        <div className="grid my-4 gap-2 text-center sm:text-left">
           <Time />
           <Weather />
         </div>
