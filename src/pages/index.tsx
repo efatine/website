@@ -11,6 +11,7 @@ import EliasImage from '@public/img/elias.jpg'
 import dynamic from 'next/dynamic';
 import toast from 'react-hot-toast';
 import { v4 as uuidv4 } from 'uuid';
+
 const Time = dynamic(() => import('components/Time'), {
   ssr: true,
 });
