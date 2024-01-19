@@ -1,7 +1,6 @@
 import { ReactNode } from 'react'
 import { GenericMeta } from 'components/GenericMeta'
 import FadeIn from 'react-fade-in'
-import { Analytics } from '@vercel/analytics/react';
 
 interface Props {
   children: ReactNode
@@ -13,7 +12,6 @@ export const BlogLayout = ({ children, title, description }: Props) => {
   return (
     <>
       <GenericMeta title={title} description={description} />
-      <Analytics />
       <FadeIn className="flex flex-col justify-center max-w-3xl mx-auto mb-16 sm:px-0">
         <h1 className="text-5xl font-bold mr-4">{title}</h1>
         {children}
