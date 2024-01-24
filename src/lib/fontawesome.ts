@@ -7,6 +7,7 @@ import {
   faGlobeEurope,
   faGlobeAmericas,
   faSearch,
+  faNewspaper,
   faCaretDown as faSolidCaretDown,
 } from '@fortawesome/free-solid-svg-icons'
 import { faSun } from '@fortawesome/free-solid-svg-icons'
@@ -43,7 +44,7 @@ config.autoAddCss = false
 library.add(faTwitter, faGithub, faDiscord, faSpotify, faLinkedin)
 
 // Import @fortawesome/free-solid-svg-icons
-library.add(faEnvelope, faSearch, faCalendarDay, faGlobeEurope, faSolidCaretDown, faGlobeAmericas)
+library.add(faEnvelope, faSearch,   faNewspaper, faCalendarDay, faGlobeEurope, faSolidCaretDown, faGlobeAmericas)
 
 // Import @fortawesome/free-regular-svg-icons
 library.add(faClock)
