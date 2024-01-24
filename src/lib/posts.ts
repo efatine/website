@@ -13,7 +13,7 @@ export const getSortedPosts = () => {
     const fileContents = fs.readFileSync(fullPath, 'utf8')
     const { data } = matter(fileContents)
 
-    const formattedDate = new Date(data.date).toLocaleDateString('en-GB')
+    const formattedDate = new Date(data.date).toLocaleDateString('en-CA')
 
     const frontmatter = {
       ...(data as { title: string; excerpt: string }),
