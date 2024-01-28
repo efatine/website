@@ -1,3 +1,4 @@
+/* eslint-disable react/no-children-prop */
 import FadeIn from 'react-fade-in'
 import { GenericMeta } from 'components/GenericMeta'
 import { v4 as uuidv4 } from 'uuid'
@@ -16,6 +17,10 @@ export default function Albums() {
       {data && (
         <div className="md:px-8">
           <FadeIn>
+            <div className="flex flex-col items-center justify-center text-5xl font-bold">Albums</div>
+            <p className="flex flex-col items-center justify-center md:px-10 text-gray-600 dark:text-gray-400 p-3"> My top albums on Spotify 
+              <span className="text-sm">(Updates automatically)</span>
+            </p>
             <div
               className="rounded-lg justify-center md:justify-start
            grid grid-flow-row xs:grid-flow-col gap-6 xs:grid-rows-2 overflow-scroll no-scrollbar p-3"

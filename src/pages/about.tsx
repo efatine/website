@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from 'uuid'
 const About = () => {
     return (
       <MainLayout
-        title="About Me"
+        title="About"
         description="This page is still under works... come back another time 😊"
       >
        <div>
