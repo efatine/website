@@ -1,20 +1,53 @@
 import { MainLayout } from 'layouts/MainLayout'
-import { v4 as uuidv4 } from 'uuid'
+import { serialize } from 'next-mdx-remote/serialize'
+import fs from 'fs'
+import path from 'path'
+import matter from 'gray-matter'
+import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote'
+import { MDXComponents } from 'components/MDXComponents'
+//@ts-ignore
+import rehypePrism from '@mapbox/rehype-prism'
+import { BlogLayout } from 'layouts/BlogLayout'
 
-const About = () => {
-    return (
-      <MainLayout
-        title="About"
-        description="This page is still under works... come back another time 😊"
-      >
-       <div>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        </div>
-      </MainLayout>
-    )
+const postDirectory = path.join(process.cwd(), 'src/data/about')
+
+interface AboutProps { 
+  source: MDXRemoteSerializeResult
+}
+
+const About: React.FC<AboutProps> = ({ source }) => {
+  return (
+    <BlogLayout title={''} description={''}     
+    >
+       <article className="max-w-none w-full mt-8 prose prose-lg dark:prose-dark">
+        <MDXRemote {...source} components={MDXComponents} />
+      </article>
+    </BlogLayout>
+  )
+}
+
+export async function getStaticProps() {
+  const filePath = path.join(postDirectory, `about.mdx`)
+  const fileContents = fs.readFileSync(filePath, 'utf8')
+  const { content, data } = matter(fileContents)
+
+  const mdxSource = await serialize(content, {
+    scope: data,
+    mdxOptions: {
+      remarkPlugins: [
+        require('remark-autolink-headings'),
+        require('remark-slug'),
+        require('remark-code-titles'),
+      ],
+      rehypePlugins: [rehypePrism],
+    },
+  })
+
+  return {
+    props: {//
+      source: mdxSource,
+    },
   }
-  
-  export default About
+}
+
+export default About
