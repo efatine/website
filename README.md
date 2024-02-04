@@ -1,4 +1,4 @@
-# My personal portfolio website
+# My personal website
 
 My personal site created with **Next.js** and **TailwindCSS**.
 
