@@ -14,6 +14,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { useEffect, useRef } from 'react';
 import tippy from 'tippy.js'
 import 'tippy.js/dist/tippy.css';
+import 'tippy.js/animations/shift-away.css';
 import { RefObject } from 'react';
 
 const Time = dynamic(() => import('components/Time'), {
@@ -27,10 +28,12 @@ const SocialLink = ({ name, href, icon, copyEmail, downloadResume }: Account) =>
     if (buttonRef.current) {
       tippy(buttonRef.current, {
         content: name === 'Email' ? 'Copy Email' : name === 'Resume' ? 'Download Resume' : name === 'GitHub' ? 'GitHub' : name=== 'LinkedIn' ? 'LinkedIn' : '',
-        arrow: true,
+        arrow: false,
         theme: 'light', 
         placement: 'bottom',
-        animation: 'fade'
+        animation: 'shift-away',
+        offset: [-20, 0],
+        animateFill: true,
       });
     }
   }, [name]);
