@@ -33,8 +33,8 @@ export const NowPlayingCard = () => {
           )}
           {lastFM.status === 'playing' && (
             <Image
-              height={75}
-              width={75}
+              height={65}
+              width={65}
               alt="Song cover art"
               className="w-full h-full rounded shadow"
               src={lastFM.song.art}
@@ -49,13 +49,14 @@ export const NowPlayingCard = () => {
             <div className="font-normal text-xs">
               by {truncate(lastFM.song.artist, 60)}
             </div>
-            </>
-          ) : ('Not listening to anything')}
-        </div>
-          <p className="text-xxs">
+            <p className="text-xxs">
             on <FontAwesomeIcon className="fill-current text-green-500" icon={['fab', 'spotify']} />{' '}
             Spotify
           </p>
+            </>
+            
+          ) : (<div className="font-semibold">Not listening to anything</div>)}
+        </div>
         </div>
       </a>
     </FadeIn>
