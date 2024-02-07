@@ -11,17 +11,29 @@ import EliasImage from '@public/img/elias.jpg'
 import dynamic from 'next/dynamic';
 import toast from 'react-hot-toast';
 import { v4 as uuidv4 } from 'uuid';
-import path from 'path';
-
-import getConfig from 'next/config';
-
-const { publicRuntimeConfig } = getConfig();
+import { useEffect, useRef } from 'react';
+import tippy from 'tippy.js'
+import 'tippy.js/dist/tippy.css';
+import { RefObject } from 'react';
 
 const Time = dynamic(() => import('components/Time'), {
   ssr: true,
 });
 
-const SocialLink = ({ name, href, icon, copyEmail, downloadResume}: Account) => {
+const SocialLink = ({ name, href, icon, copyEmail, downloadResume }: Account) => {
+  const buttonRef: RefObject<HTMLAnchorElement> = useRef(null);
+
+  useEffect(() => {
+    if (buttonRef.current) {
+      tippy(buttonRef.current, {
+        content: name === 'Email' ? 'Copy Email' : name === 'Resume' ? 'Download Resume' : name === 'GitHub' ? 'GitHub' : name=== 'LinkedIn' ? 'LinkedIn' : '',
+        arrow: true,
+        theme: 'light', 
+        placement: 'bottom',
+        animation: 'fade'
+      });
+    }
+  }, [name]);
 
   const handleOnClick = () => {
     if (name === 'Email') {
@@ -33,13 +45,14 @@ const SocialLink = ({ name, href, icon, copyEmail, downloadResume}: Account) => 
 
   return (
     <a
-      aria-label={name}
-      onClick={handleOnClick}
-      className="cursor-pointer fill-current focus:outline-none transition duration-300 ease-in-out hover:text-indigo-900 dark:hover:text-indigo-200"
-      href={href}
-      rel="noopener noreferrer"
-      target="_blank"
-    >
+    aria-label={name}
+    onClick={handleOnClick}
+    className="cursor-pointer fill-current focus:outline-none transition duration-300 ease-in-out hover:text-indigo-900 dark:hover:text-indigo-200"
+    href={href}
+    rel="noopener noreferrer"
+    target="_blank"
+    ref={buttonRef}
+  >
       <FontAwesomeIcon size="1x" icon={icon ? icon : ['fab', name.toLowerCase() as IconName]} />
     </a>
   );
@@ -61,7 +74,7 @@ const Home = () => {
   };
 
   const downloadResume = () => {
-    const resumeFileName = 'resume.pdf'; // Adjust the file name as needed
+    const resumeFileName = 'Elias_Fatine_Resume.pdf'; // Adjust the file name as needed
     const resumeFileUrl = `${resumeFileName}`;
     console.log(resumeFileUrl);
   
