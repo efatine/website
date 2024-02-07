@@ -11,16 +11,30 @@ import EliasImage from '@public/img/elias.jpg'
 import dynamic from 'next/dynamic';
 import toast from 'react-hot-toast';
 import { v4 as uuidv4 } from 'uuid';
+import path from 'path';
+
+import getConfig from 'next/config';
+
+const { publicRuntimeConfig } = getConfig();
 
 const Time = dynamic(() => import('components/Time'), {
   ssr: true,
 });
 
-const SocialLink = ({ name, href, icon, copyEmail }: Account) => {
+const SocialLink = ({ name, href, icon, copyEmail, downloadResume}: Account) => {
+
+  const handleOnClick = () => {
+    if (name === 'Email') {
+      copyEmail();
+    } else if (name === 'Resume') {
+      downloadResume();
+    }
+  };
+
   return (
     <a
       aria-label={name}
-      onClick={() => name === 'Email' && copyEmail()}
+      onClick={handleOnClick}
       className="cursor-pointer fill-current focus:outline-none transition duration-300 ease-in-out hover:text-indigo-900 dark:hover:text-indigo-200"
       href={href}
       rel="noopener noreferrer"
@@ -45,6 +59,31 @@ const Home = () => {
         })
       : toast.success('Copied email to clipboard!');
   };
+
+  const downloadResume = () => {
+    const resumeFileName = 'resume.pdf'; // Adjust the file name as needed
+    const resumeFileUrl = `${resumeFileName}`;
+    console.log(resumeFileUrl);
+  
+    const link = document.createElement('a');
+    link.href = resumeFileUrl;
+    link.download = "Elias_Fatine_Resume";
+    //document.body.appendChild(link);
+    link.click();
+   // document.body.removeChild(link);
+  
+    theme === 'dark'
+      ? toast.success('Resume downloaded!', {
+          style: {
+            background: '#333',
+            color: '#fff',
+          },
+        })
+      : toast.success('Resume downloaded!');
+  };
+  
+  
+  
 
   return (
     <>
@@ -78,6 +117,7 @@ const Home = () => {
               href={account.href}
               icon={account.icon}
               copyEmail={copyEmail}
+              downloadResume={downloadResume}
             />
           ))}
         </div>

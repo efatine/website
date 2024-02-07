@@ -5,9 +5,11 @@ export interface Account {
   href?: string
   icon?: IconProp
   copyEmail: () => void
+  downloadResume: () => void
 }
 
-export const AccountData: Omit<Account, 'copyEmail'>[] = [
+// Fix: Provide the second type argument to Omit for exclusion
+export const AccountData: Omit<Account, 'copyEmail' | 'downloadResume'>[] = [
   {
     name: 'GitHub',
     href: 'https://github.com/efatine',
@@ -16,10 +18,10 @@ export const AccountData: Omit<Account, 'copyEmail'>[] = [
     name: 'LinkedIn',
     href: 'https://www.linkedin.com/in/eliasfatine/',
   },
- /* {
-    name: 'Discord',
-    href: '/discord',
-  },*/
+  {
+    name: 'Resume',
+    icon: ['fas', 'file']
+  },
   {
     name: 'Email',
     icon: ['fas', 'envelope'],

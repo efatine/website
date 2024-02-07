@@ -12,6 +12,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import { faSun } from '@fortawesome/free-solid-svg-icons'
 import {
+  faFile,
   faCaretDown,
   faCaretRight,
   faClipboard,
@@ -55,6 +56,7 @@ library.add(
  // faClouds,
   faLightbulb,
   faTachometer,
+  faFile,
   faMoon,
   faHomeLgAlt,
   faCaretDown,
