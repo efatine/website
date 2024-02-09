@@ -45,9 +45,9 @@ export const NowPlayingCard = () => {
         <div className="text-sm sm:text-regular">
           {lastFM.status === 'playing' ? (
             <>
-            Now playing <br/> <div className="font-semibold">{truncate(lastFM.song.name, 60)}</div> 
+            Now playing <br/> <div className="font-semibold">{truncate(lastFM.song.name, 30)}</div> 
             <div className="font-normal text-xs">
-              by {truncate(lastFM.song.artist, 60)}
+              by {truncate(lastFM.song.artist, 30)}
             </div>
             <p className="text-xxs">
             on <FontAwesomeIcon className="fill-current text-green-500" icon={['fab', 'spotify']} />{' '}
