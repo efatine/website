@@ -21,4 +21,10 @@ export const ProjectData: Project[] = [
     href: 'https://github.com/efatine/website',
     icon: ['fas', 'globe-americas'],
   },
+  {
+    title: 'GCC Cycling Android App',
+    description: "GCC Cycling App - An Android app built using Java with a working SQL database",
+    href: 'https://github.com/efatine/GCC-Cycling-App',
+    icon: ['fas', 'bicycle']
+  },
 ]
