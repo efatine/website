@@ -4,22 +4,30 @@ import { truncate } from 'lib/utils'
 import Image from 'next/image'
 import FadeIn from 'react-fade-in'
 import { useLastFM } from 'use-last-fm'
-const  LASTFM_API_KEY  = "b9214ac8b554733e66f584d24f0dcd89"; //process.env
+
+const LASTFM_API_KEY = "b9214ac8b554733e66f584d24f0dcd89"; //process.env
+
+import React, { useState } from 'react';
 
 export const NowPlayingCard = () => {
-  const lastFM = useLastFM('nionide', LASTFM_API_KEY!, 5000, 'large')
+  const lastFM = useLastFM('nionide', LASTFM_API_KEY!, 5000, 'large');
+  const [hovered, setHovered] = useState(false);
 
-  if (['connecting', 'error'].includes(lastFM.status)) return null
+  if (['connecting', 'error'].includes(lastFM.status)) return null;
 
   return (
     <FadeIn>
-      <a // ${lastFM.song.url}
+      <a
         href={lastFM.status === 'playing' ? `https://open.spotify.com/search/${lastFM.song.name} ${lastFM.song.artist}` : 'https://spotify.com/'}
         rel="noopener noreferrer"
         target="_blank"
-        className="focus:outline-none transition duration-300 ease-in-out transform hover:scale-105 p-3 rounded-md border border-gray-800 shadow flex flex-row items-center max-w-sm"
+        className="focus:outline-none transition duration-300 ease-in-out transform hover:scale-105 p-3 rounded-md border border-gray-800 shadow flex flex-row items-center relative max-w-sm group"
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
       >
-        {/* can't dynamically change Image src (swapping between `string` and `StaticImageData`) */}
+        <div className="absolute top-0 right-0 mt-2 mr-2">
+          <FontAwesomeIcon className="fill-current text-green-500" icon={['fab', 'spotify']} />
+        </div>
         <div className="flex items-center justify-center h-full">
           {lastFM.status === 'idle' && (
             <Image
@@ -42,23 +50,24 @@ export const NowPlayingCard = () => {
           )}
         </div>
         <div className="my-auto ml-4">
-        <div className="text-sm sm:text-regular">
-          {lastFM.status === 'playing' ? (
-            <>
-            Now playing <br/> <div className="font-semibold">{truncate(lastFM.song.name, 30)}</div> 
-            <div className="font-normal text-xs">
-              by {truncate(lastFM.song.artist, 30)}
-            </div>
-            <p className="text-xxs">
-            on <FontAwesomeIcon className="fill-current text-green-500" icon={['fab', 'spotify']} />{' '}
-            Spotify
-          </p>
-            </>
-            
-          ) : (<div className="font-semibold">Not listening to anything</div>)}
-        </div>
+          <div className="text-sm sm:text-regular relative">
+            {lastFM.status === 'playing' ? (
+              <>
+                <div className={`transition-width transition-transform duration-300 ${hovered ? '-translate-y-2' : ''}`}>
+                  Currently playing <br /> <div className="font-semibold">{truncate(lastFM.song.name, 30)}</div>
+                  <div className="font-normal text-xs">
+                    by {truncate(lastFM.song.artist, 30)}
+                  </div>
+                  <p className={`text-xxs opacity-0 group-hover:opacity-100 transition-opacity absolute top-0 left-0 ${lastFM.status === 'playing' ? 'mt-14' : ''}`}>
+                    Click for more info
+                  </p>
+
+                </div>
+              </>
+            ) : (<div className="font-semibold">Not listening to anything</div>)}
+          </div>
         </div>
       </a>
     </FadeIn>
-  )
-}
+  );
+};
