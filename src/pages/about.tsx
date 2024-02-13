@@ -10,6 +10,7 @@ import rehypePrism from '@mapbox/rehype-prism'
 import { BlogLayout } from 'layouts/BlogLayout'
 import Typed from 'typed.js';
 import { useEffect, useRef } from 'react'
+import { GenericMeta } from 'components/GenericMeta'
 
 
 const postDirectory = path.join(process.cwd(), 'src/data/about');
@@ -19,6 +20,7 @@ interface AboutProps {
 }
 
 const About: React.FC<AboutProps> = ({ source }) => {
+  
   const adjectiveRef = useRef<Typed | null>(null);
 
   useEffect(() => {
@@ -46,7 +48,9 @@ const About: React.FC<AboutProps> = ({ source }) => {
   }, []);
 
   return (
+    
     <BlogLayout title={''} description={''}>
+      <GenericMeta title="About" description="About page" />
       <div className="flex flex-col items-center justify-center text-5xl font-bold">
         Elias Fatine
       </div>

@@ -23,7 +23,7 @@ export const ProjectCard = ({ title, description, href, icon }: Project) => {
         <Sparkle
           color={sparkleColor}
           count={15}
-          fadeOutSpeed={10}
+          fadeOutSpeed={7}
           minSize={5}
           maxSize={10}
           flicker={false}

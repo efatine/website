@@ -58,7 +58,7 @@ export const NowPlayingCard = () => {
                   <div className="font-normal text-xs">
                     by {truncate(lastFM.song.artist, 30)}
                   </div>
-                  <p className={`text-xxs opacity-0 group-hover:opacity-100 transition-opacity absolute top-0 left-0 ${lastFM.status === 'playing' ? 'mt-14' : ''}`}>
+                  <p className={`text-xxs opacity-0 group-hover:opacity-100 transition-opacity absolute ${lastFM.status === 'playing' ? 'mt-13' : ''}`}>
                     Click for more info
                   </p>
 
