@@ -109,3 +109,7 @@ pre[class*='language-'] {
 .remark-code-title + pre {
   @apply mt-0 rounded-t-none;
 }
+
+.dark .prose blockquote {
+  color: rgba(209, 213, 219, var(--tw-text-opacity));
+}
