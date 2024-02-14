@@ -113,3 +113,54 @@ pre[class*='language-'] {
 .dark .prose blockquote {
   color: rgba(209, 213, 219, var(--tw-text-opacity));
 }
+
+/* Dark Mode */
+.dark #sortSelect {
+  background-color: #000000;
+  color: #ffffff;
+  border: 1px solid #1a1a1a; /* Add this line for the white border */
+  outline: none;  
+}
+
+.dark #sortSelect option {
+  background-color: #1a1a1a;
+  color: #ffffff;
+}
+
+/* Light Mode */
+#sortSelect {
+  background-color: #ffffff;
+  color: #000000;
+  border: 1px solid #1a1a1a;
+}
+
+#sortSelect option {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.dark #searchBar {
+  background-color: #000000;
+  color: #ffffff;
+  border: 1px solid #1a1a1a; /* Adjust border color as needed */
+  outline: none;
+}
+
+/* Light Mode */
+#sortSelect {
+  background-color: #ffffff;
+  color: #000000;
+  outline: none;
+}
+
+#sortSelect option {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+#searchBar {
+  background-color: #ffffff;
+  color: #000000;
+  border: 1px solid #000000; /* Adjust border color as needed */
+  outline: none;
+}
