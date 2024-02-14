@@ -47,7 +47,7 @@ const Blog = ({ allPostsData }: InferGetStaticPropsType<typeof getStaticProps>) 
   return (
     <MainLayout
       title="Blog"
-      description={`A collection of blog posts on topics that I'm interested in.`}
+      description={`A collection of blog posts that I've written on topics that I'm interested in`}
     >
       <div className="mt-2 gap-8 flex flex-wrap items-center">
         {/* Search Bar */}
