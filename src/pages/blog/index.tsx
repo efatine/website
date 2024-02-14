@@ -47,13 +47,7 @@ const Blog = ({ allPostsData }: InferGetStaticPropsType<typeof getStaticProps>) 
   return (
     <MainLayout
       title="Blog"
-      description={`A collection of blog posts I've written. Sorted ${
-        sortBy === 'chronological-oldest'
-          ? 'chronologically (oldest)'
-          : sortBy === 'chronological-newest'
-          ? 'chronologically (newest)'
-          : 'alphabetically'
-      }.`}
+      description={`A collection of blog posts on topics that I'm interested in.`}
     >
       <div className="mt-2 gap-8 flex flex-wrap items-center">
         {/* Search Bar */}
@@ -69,7 +63,7 @@ const Blog = ({ allPostsData }: InferGetStaticPropsType<typeof getStaticProps>) 
         </div>
 
         {/* Sort Dropdown */}
-        <div className="mb-4 mr-4 flex items-center">
+        <div className="mr-4 flex items-center">
           <label htmlFor="sortSelect" className="mr-2">
             Sort:
           </label>
@@ -81,8 +75,8 @@ const Blog = ({ allPostsData }: InferGetStaticPropsType<typeof getStaticProps>) 
               theme === 'dark' ? 'dark-mode-class' : 'light-mode-class'
             } rounded-md p-2 border border-white dark:border-gray-700 appearance-none mr-20`} // Add right margin here
           >
-            <option value="chronological-oldest">Chronologically (Oldest)</option>
-            <option value="chronological-newest">Chronologically (Newest)</option>
+            <option value="chronological-oldest">Date Posted (Oldest)</option>
+            <option value="chronological-newest">Date Posted (Newest)</option>
             <option value="alphabetical">Alphabetically</option>
           </select>
         </div>

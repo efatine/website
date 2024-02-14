@@ -6,6 +6,7 @@ import {
   faEnvelope,
   faGlobeEurope,
   faGlobeAmericas,
+  faCalendar,
   faSearch,
   faNewspaper,
   faCaretDown as faSolidCaretDown,
@@ -49,7 +50,7 @@ library.add(faTwitter, faGithub, faDiscord, faSpotify, faLinkedin)
 library.add(faEnvelope, faSearch,   faNewspaper, faCalendarDay, faGlobeEurope, faSolidCaretDown, faGlobeAmericas)
 
 // Import @fortawesome/free-regular-svg-icons
-library.add(faClock)
+library.add(faClock, faCalendar)
 
 // Import @fortawesome/pro-regular-svg-icons
 library.add(

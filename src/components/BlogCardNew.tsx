@@ -25,7 +25,7 @@ export const BlogCardNew = ({slug, date, title, excerpt}: Props) => {
         <div className="flex gap-2 items-center">
           <div className="font-bold">{title}</div>
         </div>
-        <div className="text-gray-600 dark:text-gray-300">{date}</div>
+        <div className="text-gray-600 dark:text-gray-300"><FontAwesomeIcon icon={['fas', 'calendar']} /> {date}</div>
         <div className="text-gray-600 dark:text-gray-300">{excerpt}</div>
       </div>
       </a>
