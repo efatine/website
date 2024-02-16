@@ -23,25 +23,25 @@ const Blog = ({ allPostsData }: InferGetStaticPropsType<typeof getStaticProps>) 
   };
 
   const filteredAndSortedPosts = () => {
-    return allPostsData
-      .filter((post) => {
-        const postTitle = post.title.toLowerCase();
-        const postExcerpt = post.excerpt.toLowerCase();
-        const searchTermLower = searchTerm.toLowerCase();
+    const filteredPosts = allPostsData.filter((post) => {
+      const postTitle = post.title.toLowerCase();
+      const postExcerpt = post.excerpt.toLowerCase();
+      const searchTermLower = searchTerm.toLowerCase();
 
-        return postTitle.includes(searchTermLower) || postExcerpt.includes(searchTermLower);
-      })
-      .sort((a, b) => {
-        switch (sortBy) {
-          case 'chronological-oldest':
-            return new Date(a.date).getTime() - new Date(b.date).getTime();
-          case 'chronological-newest':
-            return new Date(b.date).getTime() - new Date(a.date).getTime();
-          case 'alphabetical':
-          default:
-            return a.title.localeCompare(b.title);
-        }
-      });
+      return postTitle.includes(searchTermLower) || postExcerpt.includes(searchTermLower);
+    });
+
+    return filteredPosts.sort((a, b) => {
+      switch (sortBy) {
+        case 'chronological-oldest':
+          return new Date(a.date).getTime() - new Date(b.date).getTime();
+        case 'chronological-newest':
+          return new Date(b.date).getTime() - new Date(a.date).getTime();
+        case 'alphabetical':
+        default:
+          return a.title.localeCompare(b.title);
+      }
+    });
   };
 
   return (
@@ -81,10 +81,20 @@ const Blog = ({ allPostsData }: InferGetStaticPropsType<typeof getStaticProps>) 
           </select>
         </div>
 
-        {/* Display Filtered and Sorted Posts */}
-        {filteredAndSortedPosts().map(({ slug, date, title, excerpt }) => (
-          <BlogCardNew key={uuidv4()} slug={slug} date={date} title={title} excerpt={excerpt} />
-        ))}
+        {/* Display Filtered and Sorted Posts or No Results Message */}
+        {filteredAndSortedPosts().length === 0 ? (
+           <div className="flex flex-col items-center mt-20 justify-center ml-10">
+           <p className="text-4xl gap-10">😔</p>
+           <p className="text-xl">No blog posts matching the search criteria have been found </p>
+         </div>
+         
+         
+          
+        ) : (
+          filteredAndSortedPosts().map(({ slug, date, title, excerpt }) => (
+            <BlogCardNew key={uuidv4()} slug={slug} date={date} title={title} excerpt={excerpt} />
+          ))
+        )}
       </div>
     </MainLayout>
   );
