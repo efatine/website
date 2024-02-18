@@ -8,6 +8,7 @@ import {
   faGlobeAmericas,
   faCalendar,
   faSearch,
+  faSnowflake,
   faNewspaper,
   faCaretDown as faSolidCaretDown,
 } from '@fortawesome/free-solid-svg-icons'
@@ -17,6 +18,7 @@ import {
   faCaretDown,
   faCaretRight,
   faClipboard,
+  faCloud,
   //faCloud,
   faCloudRain,
   faBicycle,
@@ -54,7 +56,7 @@ library.add(faClock, faCalendar)
 
 // Import @fortawesome/pro-regular-svg-icons
 library.add(
- // faCloud,
+    faCloud,
  // faClouds,
   faLightbulb,
   faTachometer,
@@ -64,6 +66,7 @@ library.add(
   faHomeLgAlt,
   faCaretDown,
   faCaretRight,
+  faSnowflake,
   faSmog,
   faDotCircle,
  // faStars,
