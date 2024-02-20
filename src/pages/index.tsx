@@ -7,15 +7,16 @@ import { Weather } from 'components/Weather';
 import { Account, AccountData } from 'data/accounts';
 import { MainLayout } from 'layouts/MainLayout';
 import { useTheme } from 'next-themes';
-import EliasImage from '@public/img/elias.jpg'
+import EliasImage from '@public/img/elias.jpg';
 import dynamic from 'next/dynamic';
 import toast from 'react-hot-toast';
 import { v4 as uuidv4 } from 'uuid';
 import { useEffect, useRef } from 'react';
-import tippy from 'tippy.js'
+import tippy from 'tippy.js';
 import 'tippy.js/dist/tippy.css';
 import 'tippy.js/animations/shift-away.css';
 import { RefObject } from 'react';
+import Head from 'next/head';
 
 const Time = dynamic(() => import('components/Time'), {
   ssr: true,
@@ -27,9 +28,9 @@ const SocialLink = ({ name, href, icon, copyEmail, downloadResume }: Account) =>
   useEffect(() => {
     if (buttonRef.current) {
       tippy(buttonRef.current, {
-        content: name === 'Email' ? 'Copy Email' : name === 'Resume' ? 'Download Resume' : name === 'GitHub' ? 'GitHub' : name=== 'LinkedIn' ? 'LinkedIn' : '',
+        content: name === 'Email' ? 'Copy Email' : name === 'Resume' ? 'Download Resume' : name === 'GitHub' ? 'GitHub' : name === 'LinkedIn' ? 'LinkedIn' : '',
         arrow: false,
-        theme: 'light', 
+        theme: 'light',
         placement: 'bottom',
         animation: 'shift-away',
         offset: [-20, 0],
@@ -48,14 +49,14 @@ const SocialLink = ({ name, href, icon, copyEmail, downloadResume }: Account) =>
 
   return (
     <a
-    aria-label={name}
-    onClick={handleOnClick}
-    className="cursor-pointer fill-current focus:outline-none transition duration-300 ease-in-out hover:text-indigo-900 dark:hover:text-indigo-200"
-    href={href}
-    rel="noopener noreferrer"
-    target="_blank"
-    ref={buttonRef}
-  >
+      aria-label={name}
+      onClick={handleOnClick}
+      className="cursor-pointer fill-current focus:outline-none transition duration-300 ease-in-out hover:text-indigo-900 dark:hover:text-indigo-200"
+      href={href}
+      rel="noopener noreferrer"
+      target="_blank"
+      ref={buttonRef}
+    >
       <FontAwesomeIcon size="1x" icon={icon ? icon : ['fab', name.toLowerCase() as IconName]} />
     </a>
   );
@@ -68,11 +69,11 @@ const Home = () => {
     navigator.clipboard.writeText('fatine.elias@gmail.com');
     theme === 'dark'
       ? toast.success('Copied email to clipboard!', {
-          style: {
-            background: '#333',
-            color: '#fff',
-          },
-        })
+        style: {
+          background: '#333',
+          color: '#fff',
+        },
+      })
       : toast.success('Copied email to clipboard!');
   };
 
@@ -80,33 +81,37 @@ const Home = () => {
     const resumeFileName = 'Elias_Fatine_Resume.pdf'; // Adjust the file name as needed
     const resumeFileUrl = `${resumeFileName}`;
     console.log(resumeFileUrl);
-  
+
     const link = document.createElement('a');
     link.href = resumeFileUrl;
     link.download = "Elias_Fatine_Resume";
-    //document.body.appendChild(link);
     link.click();
-   // document.body.removeChild(link);
-  
+
     theme === 'dark'
       ? toast.success('Resume downloaded!', {
-          style: {
-            background: '#333',
-            color: '#fff',
-          },
-        })
+        style: {
+          background: '#333',
+          color: '#fff',
+        },
+      })
       : toast.success('Resume downloaded!');
   };
-  
-  
-  
 
   return (
     <>
-      <GenericMeta
-        title="Elias Fatine"
-        description="22-year-old Computer Science student @ uOttawa from Ottawa, Canada."
-      />
+      <Head>
+        <style>
+          {`
+            body {
+              overflow: hidden;
+            }
+          `}
+        </style>
+        <GenericMeta
+          title="Elias Fatine"
+          description="22-year-old Computer Science student @ uOttawa from Ottawa, Canada."
+        />
+      </Head>
 
       <MainLayout margin={false}>
         <div className="flex items-center flex-col sm:flex-row text-center sm:text-left">
