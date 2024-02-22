@@ -51,7 +51,6 @@ export const Weather = () => {
       >
         Ottawa
       </a>
-      .
     </motion.p>
   )
 }

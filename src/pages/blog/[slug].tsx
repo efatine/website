@@ -1,23 +1,52 @@
-import { BlogLayout } from 'layouts/BlogLayout'
-import { getAllPostSlugs, getPostData } from 'lib/posts'
-import { MDXComponents } from 'components/MDXComponents'
-import { MDXRemote } from 'next-mdx-remote'
-import { serialize } from 'next-mdx-remote/serialize'
-import readingTime from 'reading-time'
+import { useState, useEffect } from 'react';
+import { BlogLayout } from 'layouts/BlogLayout';
+import { getAllPostSlugs, getPostData } from 'lib/posts';
+import { MDXComponents } from 'components/MDXComponents';
+import { MDXRemote } from 'next-mdx-remote';
+import { serialize } from 'next-mdx-remote/serialize';
+import readingTime from 'reading-time';
 //@ts-ignore
-import rehypePrism from '@mapbox/rehype-prism'
-import matter from 'gray-matter'
-import Image from 'next/image'
-import EliasImage from '@public/img/elias.jpg'
-import { GetStaticProps, InferGetStaticPropsType } from 'next'
-import { ParsedUrlQuery } from 'querystring'
+import rehypePrism from '@mapbox/rehype-prism';
+import matter from 'gray-matter';
+import Image from 'next/image';
+import EliasImage from '@public/img/elias.jpg';
+import { GetStaticProps, InferGetStaticPropsType } from 'next';
+import { ParsedUrlQuery } from 'querystring';
+import { useTheme } from 'next-themes';
 
 export default function Posts({
   source,
   frontMatter,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const { theme } = useTheme();
+
+  const handleScroll = () => {
+    const scrollY = window.scrollY || document.documentElement.scrollTop;
+    const windowHeight = window.innerHeight;
+    const documentHeight = document.documentElement.scrollHeight;
+
+    const scrollPercentage = (scrollY / (documentHeight - windowHeight)) * 100;
+
+    setScrollProgress(scrollPercentage);
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+  const barColor = theme === 'light' ? 'bg-black' : 'bg-white';
+
   return (
     <BlogLayout title={frontMatter.title} description={frontMatter.excerpt}>
+      <div
+        className={`fixed top-0 left-0 right-0 h-1 ${barColor}`}
+        style={{ width: `${scrollProgress}%` }}
+      ></div>
       <div className="mt-6 flex flex-row items-center">
         <Image
           className="rounded-full"
@@ -42,25 +71,25 @@ export default function Posts({
         <MDXRemote {...source} components={MDXComponents} />
       </article>
     </BlogLayout>
-  )
+  );
 }
 
 export async function getStaticPaths() {
-  const paths = getAllPostSlugs()
+  const paths = getAllPostSlugs();
   return {
     paths,
     fallback: false,
-  }
+  };
 }
 
 interface Params extends ParsedUrlQuery {
-  slug: string
+  slug: string;
 }
 
 export const getStaticProps: GetStaticProps = async (context) => {
-  const params = context.params as Params
-  const postContent = await getPostData(params.slug)
-  const { data, content } = matter(postContent)
+  const params = context.params as Params;
+  const postContent = await getPostData(params.slug);
+  const { data, content } = matter(postContent);
   const mdxSource = await serialize(content, {
     scope: data,
     mdxOptions: {
@@ -71,11 +100,11 @@ export const getStaticProps: GetStaticProps = async (context) => {
       ],
       rehypePlugins: [rehypePrism],
     },
-  })
+  });
   return {
     props: {
       source: mdxSource,
       frontMatter: { readingTime: readingTime(content), ...data },
     },
-  }
-}
+  };
+};
