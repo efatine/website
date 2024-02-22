@@ -13,12 +13,16 @@ import EliasImage from '@public/img/elias.jpg';
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import { ParsedUrlQuery } from 'querystring';
 import { useTheme } from 'next-themes';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { debounce } from 'lodash';
 
 export default function Posts({
   source,
   frontMatter,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [showScrollToTopButton, setShowScrollToTopButton] = useState(false);
+  const [isButtonPressed, setIsButtonPressed] = useState(false);
   const { theme } = useTheme();
 
   const handleScroll = () => {
@@ -29,6 +33,22 @@ export default function Posts({
     const scrollPercentage = (scrollY / (documentHeight - windowHeight)) * 100;
 
     setScrollProgress(scrollPercentage);
+
+    // Show the scroll-to-top button once the user starts scrolling
+    if (!showScrollToTopButton && scrollPercentage > 10) {
+      setShowScrollToTopButton(true);
+    } else if (showScrollToTopButton && scrollPercentage <= 10) {
+      setShowScrollToTopButton(false);
+    }
+  };
+
+  const debouncedScrollToTop = debounce(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, 300); // Adjust the debounce delay as needed
+
+  const handleButtonClick = () => {
+    setIsButtonPressed(true);
+    debouncedScrollToTop();
   };
 
   useEffect(() => {
@@ -37,14 +57,16 @@ export default function Posts({
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, []);
+  }, [showScrollToTopButton]);
 
-  const barColor = theme === 'light' ? 'bg-black' : 'bg-white';
+  const buttonColor = theme === 'light' ? 'bg-black' : 'bg-white';
+  const arrowColor = theme === 'light' ? 'text-white' : 'text-black';
+  const activeButtonColor = theme === 'light' ? 'bg-gray-800' : 'bg-gray-200';
 
   return (
     <BlogLayout title={frontMatter.title} description={frontMatter.excerpt}>
       <div
-        className={`fixed top-0 left-0 right-0 h-1 ${barColor}`}
+        className={`fixed top-0 left-0 right-0 h-1 ${buttonColor}`}
         style={{ width: `${scrollProgress}%` }}
       ></div>
       <div className="mt-6 flex flex-row items-center">
@@ -70,6 +92,22 @@ export default function Posts({
       <article className="max-w-none w-full mt-8 prose prose-lg dark:prose-dark">
         <MDXRemote {...source} components={MDXComponents} />
       </article>
+      <button
+        onClick={handleButtonClick}
+        className={`fixed bottom-8 right-8 p-4 rounded-full shadow-md hover:shadow-lg transition-opacity duration-300 ease-in-out ${
+          isButtonPressed ? activeButtonColor : buttonColor
+        } ${arrowColor} ${
+          showScrollToTopButton ? 'opacity-100' : 'opacity-0 pointer-events-none'
+        }`}
+        style={{
+          transition: 'opacity 0.3s ease-in-out',
+          borderRadius: '50%', // Make the button more circular
+          width: '60px',  // Adjust width as needed
+          height: '60px', // Adjust height as needed
+        }}
+      >
+        <FontAwesomeIcon icon={['fas', 'arrow-up']} />
+      </button>
     </BlogLayout>
   );
 }

@@ -11,6 +11,7 @@ import {
   faSnowflake,
   faNewspaper,
   faCaretDown as faSolidCaretDown,
+  faA,
 } from '@fortawesome/free-solid-svg-icons'
 import { faSun } from '@fortawesome/free-solid-svg-icons'
 import {
@@ -20,6 +21,7 @@ import {
   faClipboard,
   faCloud,
   //faCloud,
+  faArrowUp,
   faCloudRain,
   faBicycle,
   faSmog,
@@ -68,6 +70,7 @@ library.add(
   faCaretRight,
   faSnowflake,
   faSmog,
+  faArrowUp,
   faDotCircle,
  // faStars,
  // faSnooze,
