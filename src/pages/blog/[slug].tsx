@@ -66,7 +66,7 @@ export default function Posts({
   return (
     <BlogLayout title={frontMatter.title} description={frontMatter.excerpt}>
       <div
-        className={`fixed top-0 left-0 right-0 h-0.5 ${buttonColor}`}
+        className={`fixed top-0 left-0 right-0 h-1 ${buttonColor}`}
         style={{ width: `${scrollProgress}%` }}
       ></div>
       <div className="mt-6 flex flex-row items-center">
