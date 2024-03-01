@@ -8,9 +8,8 @@ const events = {
   christmas: [25, 12],
   newYear: [1, 1],
   earthDay: [22, 4],
-  canadaDay: [1, 7],
   birthday: [13, 7],
-  testday: [29, 2],
+  canadaDay: [1, 7]
 }
 
 const format = 'hhA'
@@ -44,8 +43,8 @@ const Time = () => {
               christmas: 'Merry Christmas!',
               newYear: 'Happy New Year!',
               earthDay: 'Happy Earth Day!',
-              canadaDay: 'Happy Canada Day!',
-              birthday: "Today's my birthday! 🥳",
+              birthday: "Today's my birthday 🥳",
+              canadaDay: "Happy Canada Day!"
             }[currentEvent]
           }
         </span>
