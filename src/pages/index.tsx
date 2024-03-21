@@ -108,6 +108,7 @@ const Home = () => {
             }
           `}
         </style>
+        <title>Elias Fatine</title> {/* Update the title here */}
         <GenericMeta
           title="Elias Fatine"
           description="22-year-old Computer Science student @ uOttawa from Ottawa, Canada."
