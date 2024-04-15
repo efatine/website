@@ -27,4 +27,10 @@ export const ProjectData: Project[] = [
     href: 'https://github.com/efatine/GCC-Cycling-App',
     icon: ['fas', 'bicycle']
   },
+  {
+    title: 'eHotels: Hotel Management System',
+    description: "A hotel management system app, built on React and MySQL",
+    href: 'https://github.com/efatine/eHotels',
+    icon: ['fas', 'hotel']
+  }
 ]
