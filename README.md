@@ -1,6 +1,6 @@
 # My personal website
 
-My personal site created with **Next.js** and **TailwindCSS**.
+My [personal site](https://eliasf.dev) created with **Next.js** and **TailwindCSS**.
 
 ## Getting Started
 
