@@ -12,11 +12,11 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^6.5.1",
+    "@fortawesome/fontawesome-svg-core": "^6.6.0",
     "@fortawesome/free-brands-svg-icons": "^6.5.1",
     "@fortawesome/free-regular-svg-icons": "^6.5.1",
     "@fortawesome/free-solid-svg-icons": "^6.5.1",
-    "@fortawesome/react-fontawesome": "^0.2.0",
+    "@fortawesome/react-fontawesome": "^0.2.2",
     "@mapbox/rehype-prism": "^0.9.0",
     "@mdx-js/loader": "^1.6.22",
     "@next/mdx": "^11.1.4",
@@ -74,5 +74,6 @@
     "rehype": "^11.0.0",
     "tailwindcss": "^2.2.19",
     "typescript": "^4.9.5"
-  }
+  },
+  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
 }

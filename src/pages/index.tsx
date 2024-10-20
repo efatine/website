@@ -111,7 +111,7 @@ const Home = () => {
         <title>Elias Fatine</title> {/* Update the title here */}
         <GenericMeta
           title="Elias Fatine"
-          description="22-year-old Computer Science student @ uOttawa from Ottawa, Canada."
+          description="Hello and welcome to my website! I'm Elias and I'm a third-year Computer Science student at uOttawa."
         />
       </Head>
 
@@ -127,7 +127,7 @@ const Home = () => {
           <div>
             <h1 className="text-6xl font-bold">Elias Fatine</h1>
             <p className="text-lg text-gray-600 dark:text-gray-400 mt-2">
-              22-year-old <span className="font-semibold">Computer Science Student @ uOttawa</span> from Canada.
+              Third-year <span className="font-semibold">Computer Science Student @ uOttawa</span>.
             </p>
           </div>
         </div>
